@@ -20,10 +20,7 @@ import com.sebastian_daschner.jaxrs_analyzer.model.methods.MethodIdentifier;
 import com.sebastian_daschner.jaxrs_analyzer.utils.Pair;
 import com.sebastian_daschner.jaxrs_analyzer.utils.StringUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -87,8 +84,13 @@ public class JavaDocParserVisitor extends VoidVisitorAdapter<Void> {
         field.getComment()
                 .filter(Comment::isJavadocComment)
                 .map(this::toJavaDoc)
-                .ifPresent(c -> classComments.get(className).getFieldComments().add(createFieldComment(c, field)));
+                .ifPresent(c -> grantClassComment(className).getFieldComments().add(createFieldComment(c, field)));
         super.visit(field, arg);
+    }
+
+    private ClassComment grantClassComment(String className) {
+      return classComments.getOrDefault(className,
+              new ClassComment("", Collections.emptyMap(), false));
     }
 
     private MemberParameterTag createFieldComment(Javadoc javadoc, FieldDeclaration field) {
@@ -132,8 +134,18 @@ public class JavaDocParserVisitor extends VoidVisitorAdapter<Void> {
         Map<String, String> annotations = annotationStream
                 .filter(Expression::isSingleMemberAnnotationExpr)
                 .collect(Collectors.toMap(a -> a.getName().getIdentifier(),
-                a -> a.asSingleMemberAnnotationExpr().getMemberValue().asStringLiteralExpr().asString()));
+                a -> getParamName(a.asSingleMemberAnnotationExpr().getMemberValue())));
         return new MemberParameterTag(javadocDescription.toText(), annotations);
+    }
+
+    private String getParamName(Expression memberValue) {
+      if(memberValue.isStringLiteralExpr()) {
+        return memberValue.asStringLiteralExpr().asString();
+      } else if(memberValue.isAnnotationExpr()) {
+        return memberValue.asAnnotationExpr().getNameAsString();
+      }
+      return memberValue.toString();
+//      throw new IllegalStateException("Got unexpected expression " + memberValue.toString());
     }
 
     private Map<Integer, String> createResponseComments(Javadoc javadoc) {
