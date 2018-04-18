@@ -51,4 +51,13 @@ public final class StringUtils {
         return string.chars().allMatch(Character::isWhitespace);
     }
 
+    /**
+     * Checks if the given String is NOT {@code null}, empty or consists solely of whitespaces.
+     *
+     * @param string The String to check
+     * @return {@code true} if the String is NOT {@code null}, empty or whitespace
+     */
+    public static boolean isNoneBlank(final String string) {
+        return !isBlank(string);
+    }
 }

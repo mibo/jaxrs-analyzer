@@ -54,7 +54,7 @@ public class AsciiDocBackendTest {
         Map<String, TypeIdentifier> properties = new HashMap<>();
 
         final Resources getRestRes1String = ResourcesBuilder.withBase("rest")
-                .andResource("res1", ResourceMethodBuilder.withMethod(HttpMethod.GET)
+                .andResource("res1", ResourceMethodBuilder.withMethod(HttpMethod.GET, "Some resource")
                         .andResponse(200,
                                 ResponseBuilder.withResponseBody(
                                         TypeIdentifier.ofType(
@@ -69,6 +69,8 @@ public class AsciiDocBackendTest {
                         "1.0\n" +
                         "\n" +
                         "== `GET rest/res1`\n" +
+                        "\n" +
+                        "Some resource\n" +
                         "\n" +
                         "=== Request\n" +
                         "_No body_ + \n" +
@@ -85,6 +87,8 @@ public class AsciiDocBackendTest {
                         "1.0\n" +
                         "\n" +
                         "== `GET rest/res1`\n" +
+                        "\n" +
+                        "Some resource\n" +
                         "\n" +
                         "=== Request\n" +
                         "_No body_ + \n" +

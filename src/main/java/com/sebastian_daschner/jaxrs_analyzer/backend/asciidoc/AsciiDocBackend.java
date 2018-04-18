@@ -27,9 +27,12 @@ public class AsciiDocBackend extends StringBackend {
     @Override
     protected void appendMethod(final String baseUri, final String resource, final ResourceMethod resourceMethod) {
         builder.append("== `").append(resourceMethod.getMethod()).append(' ');
-        if (!StringUtils.isBlank(baseUri))
+        if (StringUtils.isNoneBlank(baseUri))
             builder.append(baseUri).append('/');
         builder.append(resource).append("`\n\n");
+        if(StringUtils.isNoneBlank(resourceMethod.getDescription())) {
+          builder.append(resourceMethod.getDescription()).append("\n\n");
+        }
         if (resourceMethod.isDeprecated())
             builder.append("CAUTION: deprecated\n\n");
     }
