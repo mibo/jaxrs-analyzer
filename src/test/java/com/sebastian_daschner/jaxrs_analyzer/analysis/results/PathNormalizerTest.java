@@ -45,6 +45,7 @@ public class PathNormalizerTest {
                 new Object[]{"test", "hello", "{world}", "test/hello/{world}"},
                 new Object[]{"test", "hello", "{world:[foobar]+}", "test/hello/{world}"},
                 new Object[]{"test", "hello", "{world:[a-z]+}", "test/hello/{world}"},
+                new Object[]{"test", "hello", "{world:[a-z]{5,10}}", "test/hello/{world}"},
                 new Object[]{"test", "hello", "hello/world/{world:[a-z]+}-{id}", "test/hello/hello/world/{world}-{id}"},
                 new Object[]{"//test", "hello", "/hello/world/{world:[a-z]+}-{id}", "test/hello/hello/world/{world}-{id}"},
                 new Object[]{"test", "hello", "hello/{world:[^\\{\\}a-z]+}-{id}", "test/hello/hello/{world}-{id}"},

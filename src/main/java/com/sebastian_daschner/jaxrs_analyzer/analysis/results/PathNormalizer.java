@@ -118,6 +118,10 @@ final class PathNormalizer {
                 case '}':
                     if (last == '\\')
                         break;
+                    if (last == '}') {
+                      builder.deleteCharAt(index);
+                      break;
+                    }
                     if (colonIndex != -1) {
                         builder.delete(colonIndex, index);
                         index = colonIndex;
