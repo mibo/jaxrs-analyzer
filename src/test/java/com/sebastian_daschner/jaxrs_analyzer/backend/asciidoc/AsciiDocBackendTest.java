@@ -70,7 +70,9 @@ public class AsciiDocBackendTest {
                         "\n" +
                         "== `GET rest/res1`\n" +
                         "\n" +
+                        "++++\n" +
                         "Some resource\n" +
+                        "++++\n" +
                         "\n" +
                         "=== Request\n" +
                         "_No body_ + \n" +
@@ -88,7 +90,9 @@ public class AsciiDocBackendTest {
                         "\n" +
                         "== `GET rest/res1`\n" +
                         "\n" +
+                        "++++\n" +
                         "Some resource\n" +
+                        "++++\n" +
                         "\n" +
                         "=== Request\n" +
                         "_No body_ + \n" +
