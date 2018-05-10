@@ -1,0 +1,3 @@
+com.github.mibo.jaxrsdoc.backend.asciidoc.AsciiDocBackend
+com.github.mibo.jaxrsdoc.backend.plaintext.PlainTextBackend
+com.github.mibo.jaxrsdoc.backend.swagger.SwaggerBackend

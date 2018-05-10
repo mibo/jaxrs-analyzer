@@ -1,10 +1,10 @@
-= JAX-RS Analyzer
-Sebastian Daschner
+= JAX-RS Analyzer++
+Fork of `JAX-RS Analyzer` by Sebastian Daschner with fixes and improvements.
 
 The JAX-RS Analyzer generates an overview of all JAX-RS resources in a JavaEE project.
 Besides other approaches this tool uses Bytecode analysis to maximise the extracted information.
 
-The Analyzer is available as https://github.com/sdaschner/jaxrs-analyzer-maven-plugin/[Maven plugin] or standalone version (executable jar file).
+The Analyzer is available as https://github.com/sdaschner/sdaschner/jaxrsdoc-maven-plugin/[Maven plugin] or standalone version (executable jar file).
 
 == Quickstart (tl;dr)
 Just add the latest release version of the JAX-RS Analyzer to your Maven pom.xml in the `<plugins>`-section:
@@ -12,7 +12,7 @@ Just add the latest release version of the JAX-RS Analyzer to your Maven pom.xml
 ----
 <plugin>
     <groupId>com.sebastian-daschner</groupId>
-    <artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+    <artifactId>jaxrsdoc-maven-plugin</artifactId>
     <version>0.14</version>
     <executions>
         <execution>
@@ -30,15 +30,15 @@ Just add the latest release version of the JAX-RS Analyzer to your Maven pom.xml
 For an introductional video see https://blog.sebastian-daschner.com/entries/jaxrs_analyzer_explained_video[JAX-RS Analyzer explained (Video)].
 
 == Maven Plugin
-Please see the https://github.com/sdaschner/jaxrs-analyzer-maven-plugin[Maven plugin project] and a https://github.com/sdaschner/jaxrs-analyzer-maven-plugin/blob/master/Documentation.adoc[documentation] of all parameters.
+Please see the https://github.com/mibo/jaxrsdoc-maven-plugin[Maven plugin project] and a https://github.com/mibo/jaxrsdoc-maven-plugin/blob/master/Documentation.adoc[documentation] of all parameters.
 
 == Standalone
 Instead of using the Maven plugin, the tool can also run directly from the jar file.
 
-You can download the latest version https://github.com/sdaschner/jaxrs-analyzer/releases[here].
+You can download the latest version https://github.com/mibo/jaxrsdoc/releases[here].
 Alternatively the executable can be build with `mvn clean install`.
 
-Run the jar file with `java -jar jaxrs-analyzer.jar [options] <projectPathToCompiledClasses> [projectPathToCompiledClasses...]`, e.g. `java -jar jaxrs-analyzer.jar -b swagger ../yourProject/target/classes`.
+Run the jar file with `java -jar jaxrsdoc.jar [options] <projectPathToCompiledClasses> [projectPathToCompiledClasses...]`, e.g. `java -jar jaxrsdoc.jar -b swagger ../yourProject/target/classes`.
 
 The `projectPath` entries may be directories or jar files containing the classes to be analyzed.
 
@@ -69,7 +69,7 @@ The Swagger JSON file can be used with Swagger UI or the http://editor.swagger.i
  Swagger UI is a dependency-free collection of HTML, Javascript, and CSS assets that dynamically generate beautiful documentation from a Swagger-compliant API.
 
 == Changelog
-For the latest changes see the https://github.com/sdaschner/jaxrs-analyzer/blob/master/Changelog.adoc[Changelog].
+For the latest changes see the https://github.com/mibo/jaxrsdoc/blob/master/Changelog.adoc[Changelog].
 
 == Contributing
 Feedback, bug reports and ideas for improvement are very welcome! Feel free to fork, comment, file an issue, etc. ;-)

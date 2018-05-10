@@ -1,0 +1,57 @@
+/*
+ * Copyright (C) 2015 Sebastian Daschner, sebastian-daschner.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.github.mibo.jaxrsdoc.analysis.results.testclasses.typeanalyzer;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.mibo.jaxrsdoc.model.Types;
+import com.github.mibo.jaxrsdoc.model.rest.TypeIdentifier;
+import com.github.mibo.jaxrsdoc.model.rest.TypeRepresentation;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * Test @JsonIgnore on type field
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+public class TestClass23 {
+
+    private boolean first;
+    private int second;
+    @JsonIgnore
+    private TestClass23 child;
+
+    public static Set<TypeRepresentation> expectedTypeRepresentations() {
+        final Map<String, TypeIdentifier> properties = new HashMap<>();
+
+        final TypeIdentifier identifier = expectedIdentifier();
+        properties.put("first", TypeIdentifier.ofType(Types.PRIMITIVE_BOOLEAN));
+        properties.put("second", TypeIdentifier.ofType(Types.PRIMITIVE_INT));
+        //properties.put("child", identifier); @JsonIgnore
+
+        return Collections.singleton(TypeRepresentation.ofConcrete(identifier, properties));
+    }
+
+    public static TypeIdentifier expectedIdentifier() {
+        return TypeIdentifier.ofType("Lcom/github/mibo/jaxrsdoc/analysis/results/testclasses/typeanalyzer/TestClass23;");
+    }
+
+}
