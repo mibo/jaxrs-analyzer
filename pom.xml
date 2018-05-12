@@ -123,9 +123,9 @@
   </properties>
 
   <scm>
-    <connection>scm:git:git@github.com:mibo/jaxrsdoc.git</connection>
-    <developerConnection>scm:git:git@github.com:mibo/jaxrsdoc.git</developerConnection>
-    <url>scm:git:git@github.com:mibo/jaxrsdoc.git</url>
+    <connection>scm:git:git@github.com:mibo/jaxrs-doc.git</connection>
+    <developerConnection>scm:git:git@github.com:mibo/jaxrs-doc.git</developerConnection>
+    <url>scm:git:git@github.com:mibo/jaxrs-doc.git</url>
     <tag>HEAD</tag>
   </scm>
 
