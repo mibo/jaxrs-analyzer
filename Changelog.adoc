@@ -3,11 +3,19 @@ Fork of `JAX-RS Analyzer` by Sebastian Daschner with fixes and improvements.
 
 // new versions are placed on the top
 
+== v1.1.0
+=== Added
+- Added new option `basePath`
+
 == v1.0.0
+
+=== Added
 - *Created fork and renamed packages / groupid / artifactid*
 - Added passthrough for method description
-- Fix '}' for path param with regex quantifier
 - Added description to AsciiDoc
+
+=== Fixes
+- Fix '}' for path param with regex quantifier
 - Fixed NPE and @PathParam
 
 == v0.14

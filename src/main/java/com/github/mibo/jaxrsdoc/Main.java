@@ -34,6 +34,7 @@ import java.util.stream.Stream;
 public class Main {
 
     private static final String DEFAULT_NAME = "project";
+    private static final String DEFAULT_BASE_PATH = "/";
     private static final String DEFAULT_VERSION = "0.1-SNAPSHOT";
 
     private static final Set<Path> projectClassPaths = new HashSet<>();
@@ -41,6 +42,7 @@ public class Main {
     private static final Set<Path> classPaths = new HashSet<>();
     private static final Map<String, String> attributes = new HashMap<>();
     private static String name = DEFAULT_NAME;
+    private static String basePath = DEFAULT_BASE_PATH;
     private static String version = DEFAULT_VERSION;
     private static String backendType = "swagger";
     private static Path outputFileLocation;
@@ -60,6 +62,7 @@ public class Main {
      * <li>{@code -X} Debug enabled (prints error debugging information on Standard error out)</li>
      * <li>{@code -n project name} The name of the project</li>
      * <li>{@code -v project version} The version of the project</li>
+     * <li>{@code -p base path} The base path of the REST resources</li>
      * <li>{@code -d project domain} The domain of the project</li>
      * <li>{@code -o output file} The location of the analysis output (will be printed to standard out if omitted)</li>
      * <li>{@code -e encoding} The source file encoding</li>
@@ -91,7 +94,8 @@ public class Main {
         final Backend backend = JAXRSAnalyzer.constructBackend(backendType);
         backend.configure(attributes);
 
-        final JAXRSAnalyzer jaxrsAnalyzer = new JAXRSAnalyzer(projectClassPaths, projectSourcePaths, classPaths, name, version, backend, outputFileLocation);
+        final JAXRSAnalyzer jaxrsAnalyzer = new JAXRSAnalyzer(
+                projectClassPaths, projectSourcePaths, classPaths, name, version, basePath, backend, outputFileLocation);
         jaxrsAnalyzer.analyze();
     }
 
@@ -117,6 +121,9 @@ public class Main {
                             break;
                         case "-v":
                             version = args[++i];
+                            break;
+                        case "-p":
+                            basePath = args[++i];
                             break;
                         case "-d":
                             attributes.put(SwaggerOptions.DOMAIN, args[++i]);

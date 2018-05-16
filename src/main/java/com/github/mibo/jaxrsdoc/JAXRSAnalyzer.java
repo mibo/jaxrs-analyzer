@@ -29,6 +29,7 @@ public class JAXRSAnalyzer {
     private final String projectVersion;
     private final Path outputLocation;
     private final Backend backend;
+    private final String basePath;
 
     /**
      * Constructs a JAX-RS Analyzer.
@@ -38,16 +39,19 @@ public class JAXRSAnalyzer {
      * @param classPaths         The additional class paths (can either be directories or jar-files)
      * @param projectName        The project name
      * @param projectVersion     The project version
+     * @param basePath           The base path
      * @param backend            The backend to render the output
      * @param outputLocation     The location of the output file (output will be printed to standard out if {@code null})
      */
-    public JAXRSAnalyzer(final Set<Path> projectClassPaths, final Set<Path> projectSourcePaths, final Set<Path> classPaths, final String projectName, final String projectVersion,
-                         final Backend backend, final Path outputLocation) {
+    public JAXRSAnalyzer(final Set<Path> projectClassPaths, final Set<Path> projectSourcePaths,
+                         final Set<Path> classPaths, final String projectName, final String projectVersion,
+                         final String basePath, final Backend backend, final Path outputLocation) {
         Objects.requireNonNull(projectClassPaths);
         Objects.requireNonNull(projectSourcePaths);
         Objects.requireNonNull(classPaths);
         Objects.requireNonNull(projectName);
         Objects.requireNonNull(projectVersion);
+        Objects.requireNonNull(basePath);
         Objects.requireNonNull(backend);
 
         if (projectClassPaths.isEmpty())
@@ -57,6 +61,7 @@ public class JAXRSAnalyzer {
         this.projectSourcePaths.addAll(projectSourcePaths);
         this.classPaths.addAll(classPaths);
         this.projectName = projectName;
+        this.basePath = basePath;
         this.projectVersion = projectVersion;
         this.outputLocation = outputLocation;
         this.backend = backend;
@@ -67,6 +72,9 @@ public class JAXRSAnalyzer {
      */
     public void analyze() {
         final Resources resources = new ProjectAnalyzer(classPaths).analyze(projectClassPaths, projectSourcePaths);
+        if(basePath != null) {
+          resources.setBasePath(basePath);
+        }
 
         if (resources.isEmpty()) {
             LogProvider.info("Empty JAX-RS analysis result, omitting output");
